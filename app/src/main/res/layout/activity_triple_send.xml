@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <include layout="@layout/layout_appbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/barrier"
+                app:layout_constraintEnd_toEndOf="@id/et_title"
+                app:layout_constraintStart_toStartOf="@id/et_title"
+                app:layout_constraintTop_toTopOf="@id/et_title" />
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="标题"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.android.emoticoncreater.widget.imageloader.SquareImageView
+                android:id="@+id/iv_picture1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_add_picture"
+                app:layout_constraintEnd_toStartOf="@id/iv_picture2"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="@id/et_title"
+                app:layout_constraintTop_toBottomOf="@id/et_title" />
+
+            <com.android.emoticoncreater.widget.imageloader.SquareImageView
+                android:id="@+id/iv_picture2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_add_picture"
+                app:layout_constraintBottom_toBottomOf="@id/iv_picture1"
+                app:layout_constraintEnd_toStartOf="@id/iv_picture3"
+                app:layout_constraintStart_toEndOf="@id/iv_picture1"
+                app:layout_constraintTop_toTopOf="@id/iv_picture1" />
+
+            <com.android.emoticoncreater.widget.imageloader.SquareImageView
+                android:id="@+id/iv_picture3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_add_picture"
+                app:layout_constraintBottom_toBottomOf="@id/iv_picture2"
+                app:layout_constraintEnd_toEndOf="@id/et_title"
+                app:layout_constraintStart_toEndOf="@id/iv_picture2"
+                app:layout_constraintTop_toTopOf="@id/iv_picture2" />
+
+            <EditText
+                android:id="@+id/et_name1"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="第一句话"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_picture1"
+                app:layout_constraintStart_toStartOf="@id/iv_picture1"
+                app:layout_constraintTop_toBottomOf="@id/iv_picture1" />
+
+            <EditText
+                android:id="@+id/et_name2"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="第二句话"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_picture2"
+                app:layout_constraintStart_toStartOf="@id/iv_picture2"
+                app:layout_constraintTop_toBottomOf="@id/iv_picture2" />
+
+            <EditText
+                android:id="@+id/et_name3"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="第三句话"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_picture3"
+                app:layout_constraintStart_toStartOf="@id/iv_picture3"
+                app:layout_constraintTop_toBottomOf="@id/iv_picture3" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="et_name1,et_name2,et_name3" />
+
+            <Button
+                android:id="@+id/btn_do_create"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/selector_bg_button_green"
+                android:gravity="center"
+                android:text="生成"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+            <ImageView
+                android:id="@+id/iv_preview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="32:15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_do_create" />
+
+            <Button
+                android:id="@+id/btn_do_save"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/selector_bg_button_green"
+                android:gravity="center"
+                android:text="保存语录"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@id/btn_do_send"
+                app:layout_constraintEnd_toStartOf="@id/btn_do_send"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/iv_preview"
+                app:layout_constraintTop_toBottomOf="@id/iv_preview" />
+
+            <Button
+                android:id="@+id/btn_do_send"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/selector_bg_button_green"
+                android:gravity="center"
+                android:text="发送图片"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/iv_preview"
+                app:layout_constraintStart_toEndOf="@id/btn_do_save"
+                app:layout_constraintTop_toTopOf="@id/btn_do_save" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
