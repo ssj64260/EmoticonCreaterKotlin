@@ -79,14 +79,13 @@ class MainActivity : BaseActivity() {
     private val mListClick = object : OnListClickListener() {
         override fun onItemClick(position: Int) {
             val function = mFunctionList[position]
-            val name = function.getName()
 
-            when (name) {
-                FunctionInfo.NAME_TRIPLE_SEND -> showSnackbar(FunctionInfo.NAME_TRIPLE_SEND)
-                FunctionInfo.NAME_SECRET -> showSnackbar(FunctionInfo.NAME_SECRET)
-                FunctionInfo.NAME_ONE_EMOTICON -> showSnackbar(FunctionInfo.NAME_ONE_EMOTICON)
-                FunctionInfo.NAME_GIF -> showSnackbar(FunctionInfo.NAME_GIF)
-                FunctionInfo.NAME_MATURE -> showSnackbar(FunctionInfo.NAME_MATURE)
+            when (function.name) {
+                FunctionInfo.NAME_TRIPLE_SEND -> TripleSendActivity.show(this@MainActivity)
+                FunctionInfo.NAME_SECRET -> TellTheSecretActivity.show(this@MainActivity)
+                FunctionInfo.NAME_ONE_EMOTICON -> OneEmoticonActivity.show(this@MainActivity)
+                FunctionInfo.NAME_GIF -> GifThemeListActivity.show(this@MainActivity)
+                FunctionInfo.NAME_MATURE -> MatureActivity.show(this@MainActivity)
             }
         }
     }

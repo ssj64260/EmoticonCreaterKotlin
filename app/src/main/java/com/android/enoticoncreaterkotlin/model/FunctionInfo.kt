@@ -1,6 +1,6 @@
 package com.android.enoticoncreaterkotlin.model
 
-class FunctionInfo private constructor(private var name: String) {
+class FunctionInfo private constructor(var name: String) {
 
     companion object {
         const val NAME_TRIPLE_SEND = "表情三连发"
@@ -20,21 +20,5 @@ class FunctionInfo private constructor(private var name: String) {
         }
     }
 
-    private var resourceId: Int = 0
-
-    fun getResourceId(): Int {
-        return resourceId
-    }
-
-    fun setResourceId(resourceId: Int) {
-        this.resourceId = resourceId
-    }
-
-    fun getName(): String {
-        return name
-    }
-
-    fun setName(name: String) {
-        this.name = name
-    }
+    var resourceId: Int = 0
 }

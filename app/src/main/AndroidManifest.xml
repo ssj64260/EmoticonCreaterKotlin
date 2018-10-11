@@ -33,7 +33,46 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
+
+        <activity
+            android:name=".ui.activity.TripleSendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ThreeProverbListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.TellTheSecretActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SecretListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SecretEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ShowPictureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.OneEmoticonActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.OneEmoticonEditActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ui.activity.GifThemeListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.GifEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MatureActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

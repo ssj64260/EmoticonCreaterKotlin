@@ -2,7 +2,10 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
+
 
 android {
     compileSdkVersion 28
@@ -20,24 +23,48 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    //自定义APK打包名称
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (outputFileName.endsWith('.apk')) {
+                def appName = 'EmoticonCreaterKotlin_'
+                def buildType = buildType.name
+                def version = defaultConfig.versionName
+                def build = defaultConfig.versionCode
+                outputFileName = appName + version + "_" + build + "_" + buildType + ".apk"
+            }
+        }
+    }
+
+    kapt {
+        generateStubs = true//将第三方库先生成class在用kotlin注解(glide)
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     androidTestImplementation 'androidx.test:runner:1.1.0-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta01'
-
     implementation 'androidx.core:core-ktx:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
+    testImplementation 'junit:junit:4.12'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
     implementation 'com.alibaba:fastjson:1.1.70.android'
     implementation 'com.tencent.bugly:crashreport:2.6.6'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
 }

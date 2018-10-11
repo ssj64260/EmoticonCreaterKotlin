@@ -47,7 +47,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.android.emoticoncreater.widget.imageloader.SquareImageView
+            <com.android.enoticoncreaterkotlin.widget.imageloader.SquareImageView
                 android:id="@+id/iv_picture1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 app:layout_constraintStart_toStartOf="@id/et_title"
                 app:layout_constraintTop_toBottomOf="@id/et_title" />
 
-            <com.android.emoticoncreater.widget.imageloader.SquareImageView
+            <com.android.enoticoncreaterkotlin.widget.imageloader.SquareImageView
                 android:id="@+id/iv_picture2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 app:layout_constraintStart_toEndOf="@id/iv_picture1"
                 app:layout_constraintTop_toTopOf="@id/iv_picture1" />
 
-            <com.android.emoticoncreater.widget.imageloader.SquareImageView
+            <com.android.enoticoncreaterkotlin.widget.imageloader.SquareImageView
                 android:id="@+id/iv_picture3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

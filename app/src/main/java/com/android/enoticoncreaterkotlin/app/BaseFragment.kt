@@ -19,7 +19,7 @@ abstract class BaseFragment : Fragment() {
     private var mProgressDialog: ProgressDialog? = null
     private var manager: InputMethodManager? = null
 
-    protected var mActivity: Activity? = null
+    var mActivity: Activity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +49,11 @@ abstract class BaseFragment : Fragment() {
         hideProgress()
     }
 
-    protected fun initData(savedInstanceState: Bundle?) {
+    open fun initData(savedInstanceState: Bundle?) {
         manager = mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
-    protected fun initView(savedInstanceState: Bundle?) {
+    open fun initView(savedInstanceState: Bundle?) {
 
     }
 
