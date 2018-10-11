@@ -14,9 +14,9 @@ import java.io.IOException
 class GifHelper {
 
     companion object {
-        private val strokeWidth = 1f//字体边框宽度
-        private val padding = 5//内边距
-        private val textColor = 0xfffafafa.toInt()
+        private const val strokeWidth = 1f//字体边框宽度
+        private const val padding = 5//内边距
+        private const val textColor = 0xfffafafa.toInt()
 
         fun create(assetManager: AssetManager, theme: GifTheme, savePath: String, typeface: Typeface): File? {
             try {

@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.alibaba.fastjson.JSON
 import com.android.enoticoncreaterkotlin.R
 import com.android.enoticoncreaterkotlin.app.BaseActivity
 import com.android.enoticoncreaterkotlin.model.GifTheme
 import com.android.enoticoncreaterkotlin.ui.adapter.GifThemeListAdapter
 import com.android.enoticoncreaterkotlin.ui.adapter.OnListClickListener
 import com.android.enoticoncreaterkotlin.util.AssetsUtil
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.util.*
 
 class GifThemeListActivity : BaseActivity() {
@@ -39,7 +40,10 @@ class GifThemeListActivity : BaseActivity() {
         mThemeList = ArrayList()
         val jsonText = AssetsUtil.getAssetsTxtByName(this, "Gif_Theme.json")
         if (!TextUtils.isEmpty(jsonText)) {
-            val themeList: List<GifTheme> = JSON.parseArray(jsonText, GifTheme().javaClass)
+            val gson = GsonBuilder().create()
+            val type = object : TypeToken<List<GifTheme>>() {}.type
+
+            val themeList: List<GifTheme> = gson.fromJson(jsonText, type)
             if (!themeList.isEmpty()) {
                 mThemeList!!.addAll(themeList)
             }
