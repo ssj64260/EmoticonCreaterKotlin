@@ -86,6 +86,7 @@ class MainActivity : BaseActivity() {
                 FunctionInfo.NAME_ONE_EMOTICON -> OneEmoticonActivity.show(this@MainActivity)
                 FunctionInfo.NAME_GIF -> GifThemeListActivity.show(this@MainActivity)
                 FunctionInfo.NAME_MATURE -> MatureActivity.show(this@MainActivity)
+                FunctionInfo.NAME_ALL_WICKED -> AllWickedActivity.show(this@MainActivity)
             }
         }
     }

@@ -148,7 +148,6 @@ class OneEmoticonEditActivity : BaseActivity() {
                     .textSize(textSizePx)
                     .build()
 
-
             val imageFile = helper.create()
 
             runOnUiThread {

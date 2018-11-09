@@ -8,6 +8,7 @@ class FunctionInfo private constructor(var name: String) {
         const val NAME_ONE_EMOTICON = "一个表情"
         const val NAME_GIF = "GIF"
         const val NAME_MATURE = "你已经很成熟了"
+        const val NAME_ALL_WICKED = "全员恶人"
 
         fun createList(): ArrayList<FunctionInfo> {
             val functionList = ArrayList<FunctionInfo>()
@@ -16,6 +17,7 @@ class FunctionInfo private constructor(var name: String) {
             functionList.add(FunctionInfo(NAME_ONE_EMOTICON))
             functionList.add(FunctionInfo(NAME_GIF))
             functionList.add(FunctionInfo(NAME_MATURE))
+            functionList.add(FunctionInfo(NAME_ALL_WICKED))
             return functionList
         }
     }

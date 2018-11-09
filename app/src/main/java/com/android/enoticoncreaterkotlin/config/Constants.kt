@@ -12,6 +12,7 @@ class Constants {
         val PATH_ONE_EMOTICON = "${PATH_BASE}一个表情${File.separator}"
         val PATH_GIF = "${PATH_BASE}GIF${File.separator}"
         val PATH_MATURE = "${PATH_BASE}你已经很成熟了${File.separator}"
+        val PATH_ALL_WICKED = "${PATH_BASE}全员恶人${File.separator}"
 
         const val KEY_RETURN_DATA = "key_return_data"//ActivityResult
     }
