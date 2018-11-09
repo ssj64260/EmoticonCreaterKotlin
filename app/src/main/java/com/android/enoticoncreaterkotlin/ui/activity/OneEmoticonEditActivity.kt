@@ -7,9 +7,11 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.SwitchCompat
@@ -47,6 +49,8 @@ class OneEmoticonEditActivity : BaseActivity() {
     private var etTitle: AppCompatEditText? = null
     private var tvQuality: TextView? = null
     private var swQuality: SwitchCompat? = null
+    private var tvTextSize: TextView? = null
+    private var sbTextSize: SeekBar? = null
 
     private var mPicture: PictureInfo? = null
     private var mSavePath: String? = null
@@ -73,9 +77,13 @@ class OneEmoticonEditActivity : BaseActivity() {
         etTitle = findViewById(R.id.et_title)
         tvQuality = findViewById(R.id.tv_quality)
         swQuality = findViewById(R.id.sw_quality)
+        tvTextSize = findViewById(R.id.tv_text_size)
+        sbTextSize = findViewById(R.id.sb_text_size)
 
         swQuality!!.setOnCheckedChangeListener { _, isChecked -> tvQuality!!.text = if (isChecked) "HD画质" else "AV画质" }
         swQuality!!.isChecked = true
+
+        sbTextSize!!.setOnSeekBarChangeListener(mSeekBarChange)
 
         if (mPicture != null) {
             val filePath = mPicture!!.filePath
@@ -89,6 +97,8 @@ class OneEmoticonEditActivity : BaseActivity() {
 
             ivPicture!!.setImageResource(resourceId)
         }
+
+        ivPicture!!.post { setTextSize(0) }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -102,6 +112,15 @@ class OneEmoticonEditActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_confirm_create, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setTextSize(progress: Int) {
+        val pictureWidth = ivPicture!!.width
+        val scale = pictureWidth / 300f
+        val textSizePx = progress + 30
+        val textSize = "字体:$textSizePx"
+        tvTextSize!!.text = textSize
+        etTitle!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx * scale)
     }
 
     private fun doCreate() {
@@ -119,7 +138,18 @@ class OneEmoticonEditActivity : BaseActivity() {
         ThreadPoolUtil.instance.cachedExecute(Runnable {
             val isOriginal = swQuality!!.isChecked
             val typeface = Typeface.createFromAsset(assets, "fonts/bold.ttf")
-            val imageFile = OneEmoticonHelper.create(resources, mPicture!!, mSavePath!!, typeface, isOriginal)
+            val textSizePx = sbTextSize!!.progress * 2 + 30
+
+            val helper = OneEmoticonHelper.Builder(resources)
+                    .pictureInfo(mPicture!!)
+                    .savePath(mSavePath!!)
+                    .typeFace(typeface)
+                    .isOriginal(isOriginal)
+                    .textSize(textSizePx)
+                    .build()
+
+
+            val imageFile = helper.create()
 
             runOnUiThread {
                 if (imageFile.exists()) {
@@ -135,5 +165,18 @@ class OneEmoticonEditActivity : BaseActivity() {
                 hideProgress()
             }
         })
+    }
+
+    private val mSeekBarChange = object : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            val p = progress * 2
+            setTextSize(p)
+        }
+
+        override fun onStartTrackingTouch(seekBar: SeekBar?) {
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar?) {
+        }
     }
 }

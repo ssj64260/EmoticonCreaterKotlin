@@ -71,7 +71,13 @@ class ImageDataHelper {
                 R.raw.img_xiongmaoren52, R.raw.img_xiongmaoren53, R.raw.img_xiongmaoren54,
                 R.raw.img_xiongmaoren55, R.raw.img_xiongmaoren56, R.raw.img_xiongmaoren57,
                 R.raw.img_xiongmaoren58, R.raw.img_xiongmaoren59, R.raw.img_xiongmaoren60,
-                R.raw.img_xiongmaoren61, R.raw.img_xiongmaoren62, R.raw.img_xiongmaoren63)
+                R.raw.img_xiongmaoren61, R.raw.img_xiongmaoren62, R.raw.img_xiongmaoren63,
+                R.raw.img_xiongmaoren64, R.raw.img_xiongmaoren65, R.raw.img_xiongmaoren66,
+                R.raw.img_xiongmaoren67, R.raw.img_xiongmaoren68, R.raw.img_xiongmaoren69,
+                R.raw.img_xiongmaoren70, R.raw.img_xiongmaoren71, R.raw.img_xiongmaoren72,
+                R.raw.img_xiongmaoren73, R.raw.img_xiongmaoren74, R.raw.img_xiongmaoren75,
+                R.raw.img_xiongmaoren76, R.raw.img_xiongmaoren77, R.raw.img_xiongmaoren78,
+                R.raw.img_xiongmaoren79, R.raw.img_xiongmaoren80, R.raw.img_xiongmaoren81)
         val HUA_JI_LIST = intArrayOf(
                 R.raw.img_huaji1, R.raw.img_huaji2, R.raw.img_huaji3,
                 R.raw.img_huaji4, R.raw.img_huaji5, R.raw.img_huaji6,
