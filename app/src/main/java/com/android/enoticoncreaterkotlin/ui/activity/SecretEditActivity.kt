@@ -46,7 +46,6 @@ class SecretEditActivity : BaseActivity() {
 
         setToolbarBackEnable()
         setToolbarTitle("添加秘密")
-        setToolbarSubTitle("编写你的秘密")
 
         ivPicture = findViewById(R.id.iv_picture)
         etTitle = findViewById(R.id.et_title)

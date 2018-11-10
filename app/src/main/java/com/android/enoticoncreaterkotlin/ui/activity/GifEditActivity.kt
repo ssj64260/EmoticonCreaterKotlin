@@ -86,7 +86,6 @@ class GifEditActivity : BaseActivity() {
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
         setToolbarBackEnable()
-        setToolbarSubTitle("编辑对应的文字")
 
         llContent = findViewById(R.id.ll_content)
         ivGif = findViewById(R.id.iv_gif)
