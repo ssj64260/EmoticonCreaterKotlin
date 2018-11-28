@@ -49,7 +49,8 @@ class ImageDataHelper {
                 R.raw.img_mogutou79, R.raw.img_mogutou80, R.raw.img_mogutou81,
                 R.raw.img_mogutou82, R.raw.img_mogutou83, R.raw.img_mogutou84,
                 R.raw.img_mogutou85, R.raw.img_mogutou86, R.raw.img_mogutou87,
-                R.raw.img_mogutou88, R.raw.img_mogutou89, R.raw.img_mogutou90)
+                R.raw.img_mogutou88, R.raw.img_mogutou89, R.raw.img_mogutou90,
+                R.raw.img_mogutou91, R.raw.img_mogutou92, R.raw.img_mogutou93)
         val XIONG_MAO_REN_LIST = intArrayOf(
                 R.raw.img_xiongmaoren1, R.raw.img_xiongmaoren2, R.raw.img_xiongmaoren3,
                 R.raw.img_xiongmaoren4, R.raw.img_xiongmaoren5, R.raw.img_xiongmaoren6,
