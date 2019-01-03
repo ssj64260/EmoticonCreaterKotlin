@@ -23,9 +23,13 @@ class EmoticonListAdapter(context: Context, title: String) : RecyclerView.Adapte
         mList = ArrayList()
         val pictures: IntArray =
                 when (title) {
+                    "蘑菇头" -> ImageDataHelper.MO_GU_TOU_LIST
                     "熊猫人" -> ImageDataHelper.XIONG_MAO_REN_LIST
-                    "滑稽" -> ImageDataHelper.HUA_JI_LIST
-                    else -> ImageDataHelper.MO_GU_TOU_LIST
+                    "小坏坏" -> ImageDataHelper.XIAO_HUAI_HUAI_LIST
+                    "猥琐萌" -> ImageDataHelper.WEI_SUO_MENG_LIST
+                    "小仓鼠" -> ImageDataHelper.XIAO_CANG_SHU_LIST
+                    "红脸蛋" -> ImageDataHelper.HONG_LIAN_DAN_LIST
+                    else -> ImageDataHelper.HUA_JI_LIST
                 }
 
         mList.clear()
