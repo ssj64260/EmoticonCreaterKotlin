@@ -18,9 +18,14 @@ class AllWickedHelper private constructor(builder: Builder) {
         private const val FIRST_PICUTRE = R.raw.img_all_wicked1
         private const val FIRST_PICUTRE_HEIGHT = 318
 
-        private const val SECOND_CLOTHES_TEXT_CENTER = 116
-        private const val SECOND_CLOTHES_TEXT_TOP = 130
-        private const val SECOND_PICUTRE = R.raw.img_all_wicked2
+        private const val SECOND_LEFT_CLOTHES_TEXT_CENTER = 116
+        private const val SECOND_LEFT_CLOTHES_TEXT_TOP = 130
+        private const val SECOND_LEFT_PICUTRE = R.raw.img_all_wicked2_left
+
+        private const val SECOND_RIGHT_CLOTHES_TEXT_CENTER = 385
+        private const val SECOND_RIGHT_CLOTHES_TEXT_TOP = 130
+        private const val SECOND_RIGHT_PICUTRE = R.raw.img_all_wicked2_right
+
         private const val SECOND_PICUTRE_HEIGHT = 446
 
         private const val THIRD_CLOTHES_TEXT_CENTER = 451
@@ -47,15 +52,29 @@ class AllWickedHelper private constructor(builder: Builder) {
         private const val BACKGROUND_COLOR = 0xffffffff.toInt()
     }
 
-    private val mResources: Resources? = null
-    private val mDescription: String? = null//描述
-    private val mAClothesText: String? = null//A的衣服文字
-    private val mBClothesText: String? = null//B的衣服文字
-    private val mBClothesWord: String? = null//B的衣服文字的第一个或最后一个字
-    private val mAAskText: String? = null//A的提问
-    private val mBReplyText: String? = null//B的回答
-    private val mSavePath: String? = null
-    private val mTypeFace: Typeface? = null
+    private var mResources: Resources? = null
+    private var mDescription: String? = null//描述
+    private var mAClothesText: String? = null//A的衣服文字
+    private var mBClothesText: String? = null//B的衣服文字
+    private var mBClothesWord: String? = null//B的衣服文字的第一个或最后一个字
+    private var mAAskText: String? = null//A的提问
+    private var mBReplyText: String? = null//B的回答
+    private var mSavePath: String? = null
+    private var mTypeFace: Typeface? = null
+    private var mIsRight: Boolean? = null
+
+    init {
+        mResources = builder.resources
+        mDescription = builder.description
+        mAClothesText = builder.aClothesText
+        mBClothesText = builder.bClothesText
+        mBClothesWord = builder.bClothesWord
+        mAAskText = builder.aAskText
+        mBReplyText = builder.bReplyText
+        mSavePath = builder.savePath
+        mTypeFace = builder.typeFace
+        mIsRight = builder.isRight
+    }
 
     fun create(): File {
         val textPaint = createTextPaint(mTypeFace!!, DESCRIPTION_TEXT_SIZE, TEXT_COLOR)
@@ -67,12 +86,12 @@ class AllWickedHelper private constructor(builder: Builder) {
         val bReplyLayout = StaticLayout(mBReplyText, textPaint, textWidth,
                 Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false)
 
-        val totalHeight = PADDING + descriptionLayout.height + PADDING
-        +FIRST_PICUTRE_HEIGHT + PADDING + SECOND_PICUTRE_HEIGHT
-        +PADDING + aAskLayout.height
-        +THIRD_PICUTRE_HEIGHT + PADDING
-        +bReplyLayout.height
-        +FORTH_PICUTRE_HEIGHT + PADDING
+        var totalHeight = PADDING + descriptionLayout.height + PADDING
+        totalHeight += FIRST_PICUTRE_HEIGHT + PADDING + SECOND_PICUTRE_HEIGHT
+        totalHeight += PADDING + aAskLayout.height
+        totalHeight += THIRD_PICUTRE_HEIGHT + PADDING
+        totalHeight += bReplyLayout.height
+        totalHeight += FORTH_PICUTRE_HEIGHT + PADDING
 
         val background = Bitmap.createBitmap(PICTURE_WIDTH, totalHeight, Bitmap.Config.ARGB_8888)
         val backgroundRect = Rect(0, 0, PICTURE_WIDTH, totalHeight)
@@ -80,10 +99,14 @@ class AllWickedHelper private constructor(builder: Builder) {
         val backgroundPaint = createBackgroundPaint()
         canvas.drawRect(backgroundRect, backgroundPaint)
 
-        val clothesTextPaint = createTextPaint(mTypeFace, CLOTHES_TEXT_SIZE, CLOTHES_TEXT_COLOR)
+        val clothesTextPaint = createTextPaint(mTypeFace!!, CLOTHES_TEXT_SIZE, CLOTHES_TEXT_COLOR)
 
         drawFirstPart(canvas, descriptionLayout, clothesTextPaint)
-        drawSecondPart(canvas, clothesTextPaint)
+        if (mIsRight!!) {
+            drawSecondRightPart(canvas, clothesTextPaint)
+        } else {
+            drawSecondLeftPart(canvas, clothesTextPaint)
+        }
         drawThirdPart(canvas, aAskLayout)
         drawForthPart(canvas, bReplyLayout, clothesTextPaint)
 
@@ -109,16 +132,28 @@ class AllWickedHelper private constructor(builder: Builder) {
         canvas.translate((-FIRST_CLOTHES_TEXT_CENTER).toFloat(), (-FIRST_CLOTHES_TEXT_TOP).toFloat())
     }
 
-    private fun drawSecondPart(canvas: Canvas, clothesTextPaint: TextPaint) {
+    private fun drawSecondLeftPart(canvas: Canvas, clothesTextPaint: TextPaint) {
         canvas.translate(0f, (FIRST_PICUTRE_HEIGHT + PADDING).toFloat())
-        drawBitmap(mResources!!, canvas, SECOND_PICUTRE)
+        drawBitmap(mResources!!, canvas, SECOND_LEFT_PICUTRE)
 
         val clothesWordLayout = StaticLayout(mBClothesWord, clothesTextPaint, CLOTHES_WORD_WIDTH,
                 Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false)
 
-        canvas.translate(SECOND_CLOTHES_TEXT_CENTER.toFloat(), SECOND_CLOTHES_TEXT_TOP.toFloat())
+        canvas.translate(SECOND_LEFT_CLOTHES_TEXT_CENTER.toFloat(), SECOND_LEFT_CLOTHES_TEXT_TOP.toFloat())
         clothesWordLayout.draw(canvas)
-        canvas.translate((-SECOND_CLOTHES_TEXT_CENTER).toFloat(), (-SECOND_CLOTHES_TEXT_TOP).toFloat())
+        canvas.translate((-SECOND_LEFT_CLOTHES_TEXT_CENTER).toFloat(), (-SECOND_LEFT_CLOTHES_TEXT_TOP).toFloat())
+    }
+
+    private fun drawSecondRightPart(canvas: Canvas, clothesTextPaint: TextPaint) {
+        canvas.translate(0f, (FIRST_PICUTRE_HEIGHT + PADDING).toFloat())
+        drawBitmap(mResources!!, canvas, SECOND_RIGHT_PICUTRE)
+
+        val clothesWordLayout = StaticLayout(mBClothesWord, clothesTextPaint, CLOTHES_WORD_WIDTH,
+                Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false)
+
+        canvas.translate(SECOND_RIGHT_CLOTHES_TEXT_CENTER.toFloat(), SECOND_RIGHT_CLOTHES_TEXT_TOP.toFloat())
+        clothesWordLayout.draw(canvas)
+        canvas.translate((-SECOND_RIGHT_CLOTHES_TEXT_CENTER).toFloat(), (-SECOND_RIGHT_CLOTHES_TEXT_TOP).toFloat())
     }
 
     private fun drawThirdPart(canvas: Canvas, aAskLayout: StaticLayout) {
@@ -203,7 +238,7 @@ class AllWickedHelper private constructor(builder: Builder) {
         return bitmap
     }
 
-    class Builder constructor(resources: Resources) {
+    class Builder constructor(val resources: Resources) {
         var description: String? = null
         var aClothesText: String? = null
         var bClothesText: String? = null
@@ -212,6 +247,7 @@ class AllWickedHelper private constructor(builder: Builder) {
         var bReplyText: String? = null
         var savePath: String? = null
         var typeFace: Typeface? = null
+        var isRight: Boolean? = null
 
         fun description(description: String): Builder {
             this.description = description
@@ -250,6 +286,11 @@ class AllWickedHelper private constructor(builder: Builder) {
 
         fun typeFace(typeFace: Typeface): Builder {
             this.typeFace = typeFace
+            return this
+        }
+
+        fun isRight(isRight: Boolean): Builder {
+            this.isRight = isRight
             return this
         }
 

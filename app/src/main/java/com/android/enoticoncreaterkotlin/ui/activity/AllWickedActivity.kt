@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
+import androidx.appcompat.widget.SwitchCompat
 import com.android.enoticoncreaterkotlin.R
 import com.android.enoticoncreaterkotlin.app.BaseActivity
 import com.android.enoticoncreaterkotlin.config.Constants
@@ -30,6 +31,7 @@ class AllWickedActivity : BaseActivity() {
     private var etDescritption: EditText? = null
     private var etAClothesText: EditText? = null
     private var etBClothesWord: EditText? = null
+    private var swDirection: SwitchCompat? = null
     private var etAAsk: EditText? = null
     private var etBReply: EditText? = null
     private var etBClothesText: EditText? = null
@@ -56,9 +58,13 @@ class AllWickedActivity : BaseActivity() {
         etDescritption = findViewById(R.id.et_descritption)
         etAClothesText = findViewById(R.id.et_a_clothes_text)
         etBClothesWord = findViewById(R.id.et_b_clothes_word)
+        swDirection = findViewById(R.id.sw_direction)
         etAAsk = findViewById(R.id.et_a_ask)
         etBReply = findViewById(R.id.et_b_reply)
         etBClothesText = findViewById(R.id.et_b_clothes_text)
+
+        swDirection!!.setOnCheckedChangeListener { _, isChecked -> etBClothesWord!!.hint = if (isChecked) "酷" else "佬" }
+        swDirection!!.isChecked = true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -85,6 +91,7 @@ class AllWickedActivity : BaseActivity() {
             var aAsk = etAAsk!!.text.toString()
             var bReply = etBReply!!.text.toString()
             var bClothesText = etBClothesText!!.text.toString()
+            val isRight = swDirection!!.isChecked
 
             if (TextUtils.isEmpty(description)) {
                 description = etDescritption!!.hint.toString()
@@ -115,6 +122,7 @@ class AllWickedActivity : BaseActivity() {
                     .bClothesText(bClothesText)
                     .savePath(mSavePath!!)
                     .typeFace(typeface)
+                    .isRight(isRight)
                     .build()
 
             val imageFile = helper.create()
